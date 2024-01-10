@@ -1,0 +1,15 @@
+*
+!*/
+!.gitignore
+
+!.vimrc
+
+!.zshenv
+!.zshrc
+!.zprofile
+
+!
+
+!makefile
+
+.DS_Store
