@@ -3,7 +3,7 @@ git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${HOME}/.local/s
 # if [[ -z ${ZDOTDIR} ]]; then
 #     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ${HOME}/.zshrc
 # else
-#     echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ${ZDOTDIR}/.zshrc
+#     echo 'source ${HOME}/.local/share/powerlevel10k/powerlevel10k.zsh-theme' >> ${ZDOTDIR}/.zshrc
 # fi
 ZDOTDIR=${HOME}/.config/zsh/
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ${ZDOTDIR}/.zshrc
+echo 'source ${HOME}/.local/share/powerlevel10k/powerlevel10k.zsh-theme' >> ${ZDOTDIR}/.zshrc
