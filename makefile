@@ -8,7 +8,7 @@ p10k: zshrc
 	. make/p10k.sh
 
 vimrc: zshrc
-	. make/vim.sh
+	. make/vimrc.sh
 
 font-hack:
 	. make/font-hack.sh
