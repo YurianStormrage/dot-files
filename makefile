@@ -36,3 +36,6 @@ font-jbm:
 	fi
 
 fonts: font-hack font-jbm
+
+
+all: zshrc vimrc p10k fonts
