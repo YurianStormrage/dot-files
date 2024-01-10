@@ -6,4 +6,4 @@ git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${HOME}/.local/s
 #     echo 'source ${HOME}/.local/share/powerlevel10k/powerlevel10k.zsh-theme' >> ${ZDOTDIR}/.zshrc
 # fi
 ZDOTDIR=${HOME}/.config/zsh/
-echo 'source ${HOME}/.local/share/powerlevel10k/powerlevel10k.zsh-theme' >> ${ZDOTDIR}/.zshrc
+echo 'source ${XDG_DATA_HOME:-$HOME/.local/share}/powerlevel10k/powerlevel10k.zsh-theme' >> ${ZDOTDIR}/.zshrc

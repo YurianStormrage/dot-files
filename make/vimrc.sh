@@ -6,6 +6,6 @@ cp -r vim/. ${HOME}
 #     echo 'export VIMINIT='\''source $MYVIMRC'\' >> ${ZDOTDIR}/.zshrc
 #     echo 'export MYVIMRC='\''~/.vim/vimrc'\' >> ${ZDOTDIR}/.zshrc
 # fi
-ZDOTDIR=${HOME}/.config/zsh/
+ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh/
 echo 'export VIMINIT='\''source $MYVIMRC'\' >> ${ZDOTDIR}/.zshrc
 echo 'export MYVIMRC='\''~/.vim/vimrc'\' >> ${ZDOTDIR}/.zshrc
