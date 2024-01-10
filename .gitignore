@@ -5,11 +5,11 @@
 !.vimrc
 
 !.zshenv
-!.zshrc
-!.zprofile
-
-!
 
 !makefile
+!vimrc.sh
+!p10k.sh
+!font-hack.sh
+!font-jbm.sh
 
 .DS_Store
