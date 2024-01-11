@@ -1,0 +1,15 @@
+[submodule "zsh-completions"]
+	path = zsh/.local/share/zsh-completions
+    url = https://github.com/zsh-users/zsh-completions
+[submodule "zsh-syntax-highlighting"]
+	path = zsh/.local/share/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh-autosuggestions"]
+    path = zsh/.local/share/zsh-autosuggestions
+    url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh-colored-man-pages"]
+    path = zsh/.local/share/zsh-colored-man-pages
+    url = https://github.com/ael-code/zsh-colored-man-pages
+[submodule "autojump"]
+    path = zsh/.local/share/autojump
+    url = https://github.com/wting/autojump
