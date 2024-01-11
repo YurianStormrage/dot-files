@@ -1,5 +1,5 @@
 " 指定viminfo文件
-set viminfofile=$HOME/.config/vim/.viminfo
+set viminfofile=${XDG_CONFIG_HOME:-HOME/.config}/vim/.viminfo
 
 """ >>>>>> editor >>>>>>
 
@@ -102,18 +102,17 @@ set undofile
 
 " 设置备份文件、交换文件、操作历史文件的保存位置
 " 结尾的`//`表示生成的文件名带有绝对路径，路径中用`%`替换目录分隔符，这样可以防止文件重名
-set backupdir=$HOME/.local/state/vim/.backup//
-set directory=$HOME/.local/state/vim/.swp//
-set undodir=$HOME/.local/state/vim/.undo//
+set backupdir=${XDG_STATE_HOME:-$HOME/.local/state}/vim/.backup//
+set directory=${XDG_STATE_HOME:-$HOME/.local/state}/vim/.swp//
+set undodir=${XDG_STATE_HOME:-$HOME/.local/state}/vim/.undo//
 
 " 自动切换工作目录
 set autochdir
 
 " 关闭错误提示音
 set noerrorbells
-
 " 视觉错误提示
-set visualbell
+"set visualbell
 
 " 历史操作的记忆数量
 set history=1000
@@ -124,7 +123,7 @@ set autoread
 " list模式下，特殊显示的字符
 set listchars=eol:$,tab:<->,trail:■
 " List Mode
-set list
+"set list
 
 " 命令模式补全菜单
 set wildmenu
