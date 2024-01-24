@@ -7,6 +7,7 @@ cp -r vim/. ${HOME}
 #     echo 'export MYVIMRC='\''~/.vim/vimrc'\' >> ${ZDOTDIR}/.zshrc
 # fi
 ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh/
+echo '' >> $ZDOTDIR/.zshenv
 echo '# +-----+' >> $ZDOTDIR/.zshenv
 echo '# | Vim |' >> $ZDOTDIR/.zshenv
 echo '# +-----+' >> $ZDOTDIR/.zshenv
