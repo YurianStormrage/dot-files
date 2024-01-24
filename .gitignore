@@ -8,6 +8,11 @@
 
 !.zshenv
 
+!autojump.sh
+!zsh-autosuggestions.sh
+!zsh-completions.sh
+!zsh-colored-man-pages.sh
+
 !makefile
 !vimrc.sh
 !p10k.sh

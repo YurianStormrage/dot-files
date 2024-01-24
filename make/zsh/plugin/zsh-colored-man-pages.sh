@@ -1,0 +1,1 @@
+git clone https://github.com/ael-code/zsh-colored-man-pages.git ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-colored-man-pages
