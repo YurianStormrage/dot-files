@@ -1,0 +1,1 @@
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-syntax-highlighting

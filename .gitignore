@@ -13,6 +13,7 @@
 !zsh-autosuggestions.sh
 !zsh-completions.sh
 !zsh-colored-man-pages.sh
+!zsh-syntax-highlighting.sh
 
 !makefile
 !vimrc.sh
