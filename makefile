@@ -11,8 +11,8 @@ zsh-plugins: autojump zsh-autosuggestions zsh-completions zsh-colored-man-pages
 autojump: zshrc
 	. make/zsh/plugin/autojump.sh
 
-zsh-autosuggestions:
-	. make/zsh/plugin/autojump.sh
+zsh-autosuggestions: zshrc
+	. make/zsh/plugin/zsh-autosuggestions.sh
 
 zsh-completions: zshrc
 	. make/zsh/plugin/zsh-completions.sh
