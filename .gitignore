@@ -8,6 +8,7 @@
 
 !.zshenv
 
+!zshrc.sh
 !autojump.sh
 !zsh-autosuggestions.sh
 !zsh-completions.sh

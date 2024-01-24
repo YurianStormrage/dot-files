@@ -1,29 +1,28 @@
 .PHONY: zshrc zsh-plugins vimrc p10k font-hack font-jbm fonts all
 
-all: zshrc zsh-plugins vimrc p10k fonts
+all: zshrc vimrc p10k
 
 zshrc:
-	cp -r zsh/. ${HOME}
-	. ${HOME}/.zshenv
+	sh make/zsh/zshrc.sh
 
 zsh-plugins: autojump zsh-autosuggestions zsh-completions zsh-colored-man-pages
 
-autojump: zshrc
+autojump:
 	. make/zsh/plugin/autojump.sh
 
-zsh-autosuggestions: zshrc
+zsh-autosuggestions:
 	. make/zsh/plugin/zsh-autosuggestions.sh
 
-zsh-completions: zshrc
+zsh-completions:
 	. make/zsh/plugin/zsh-completions.sh
 
-zsh-colored-man-pages: zshrc
+zsh-colored-man-pages:
 	. make/zsh/plugin/zsh-colored-man-pages.sh
 
-p10k: zshrc
+p10k:
 	. make/p10k.sh
 
-vimrc: zshrc
+vimrc:
 	. make/vimrc.sh
 
 font-hack:
