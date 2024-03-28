@@ -32,8 +32,6 @@ alias grep='grep --color=auto'
 # | History |
 # +---------+
 
-HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/zsh/history
-
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt SHARE_HISTORY             # Share history between all sessions.
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
