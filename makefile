@@ -5,7 +5,7 @@ all: zshrc vimrc p10k
 zshrc:
 	sh make/zsh/zshrc.sh
 
-zsh-plugins: autojump zsh-autosuggestions zsh-completions zsh-colored-man-pages zsh-syntax-highlighting
+zsh-plugins: autojump zsh-autosuggestions zsh-completions zsh-colored-man-pages zsh-syntax-highlighting zsh-history-substring-search
 
 autojump:
 	. make/zsh/plugin/autojump.sh
@@ -21,6 +21,9 @@ zsh-colored-man-pages:
 
 zsh-syntax-highlighting:
 	. make/zsh/plugin/zsh-syntax-highlighting.sh
+
+zsh-history-substring-search:
+	. make/zsh/plugin/zsh-history-substring-search.sh
 
 p10k:
 	. make/p10k.sh
