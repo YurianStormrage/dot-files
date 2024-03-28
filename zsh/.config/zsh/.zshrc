@@ -26,9 +26,13 @@ alias ll='ls -lAh'
 alias lsa='ls -lah'
 alias l='ls -lah'
 
+alias grep='grep --color=auto'
+
 # +---------+
 # | History |
 # +---------+
+
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/zsh/history
 
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt SHARE_HISTORY             # Share history between all sessions.
@@ -67,14 +71,20 @@ zmodload zsh/complist
     # +----------+
 
 # Initialize completion
-autoload -U compinit; compinit
+
+# Autoload compinit.
+# With the `-U' flag, alias expansion is suppressed when the function is loaded.
+autoload -U compinit
+# Alternatively, an explicit dumped file name can be given by `compinit -d dumpfile'.
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
+compinit
 
     # +---------+
     # | Options |
     # +---------+
 
-#setopt GLOB_COMPLETE        # Show autocompletion menu with globs
-setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
+setopt GLOB_COMPLETE        # Show autocompletion menu with globs
+#setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
 setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
 setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
 setopt GLOB_DOTS            # Do not require a leading `.` in a filename to be matched explicitly.
@@ -130,8 +140,10 @@ zstyle ':completion:*' completer _extensions _complete _approximate
         # +-------+
 
 # Use cache for commands using cache
+# Completion files: Use XDG dirs
+[ -d "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh ] || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/.zcompcache"
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
 
         # +------------+
         # | Formatting |
@@ -194,19 +206,26 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 # +---------+
 
 # autojump
-[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/autojump/bin/autojump.sh ]] \
-    || source ${XDG_DATA_HOME:-$HOME/.local/share}/autojump/bin/autojump.sh
+#[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/autojump/bin/autojump.sh ]] \
+#    || source ${XDG_DATA_HOME:-$HOME/.local/share}/autojump/bin/autojump.sh
 
 # zsh-autosuggestions
 [[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-autosuggestions/zsh-autosuggestions.zsh ]] \
     || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # zsh-colored-man-pages
-[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/colored-man-pages/colored-man-pages.plugin.zsh ]] \
-    || source ${XDG_DATA_HOME:-$HOME/.local/share}/colored-man-pages/colored-man-pages.plugin.zsh
+[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-colored-man-pages/colored-man-pages.plugin.zsh ]] \
+    || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-colored-man-pages/colored-man-pages.plugin.zsh
 
 # zsh-syntax-highlighting
 # NOTE: This plugin needs to be sourced at the end of the `.zshrc` file.
 #       More detailed, it should be after all the `compinit` and `zle -N`s.
 [[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] \
     || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# zsh-history-substring-search
+# NOTE: If zsh-syntax-highlighting is used along with this script,
+#       then make sure that zsh-syntax-highlighting has been loaded before this script.
+[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-history-substring-search/zsh-history-substring-search.zsh ]] \
+    || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-history-substring-search/zsh-history-substring-search.zsh
+

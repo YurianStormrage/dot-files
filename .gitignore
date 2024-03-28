@@ -14,6 +14,7 @@
 !zsh-completions.sh
 !zsh-colored-man-pages.sh
 !zsh-syntax-highlighting.sh
+!zsh-history-substring-search.sh
 
 !makefile
 !vimrc.sh

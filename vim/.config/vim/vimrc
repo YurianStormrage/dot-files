@@ -1,5 +1,23 @@
-" 指定viminfo文件
-set viminfofile=$XDG_CONFIG_HOME/vim/.viminfo
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+let g:netrw_home = $XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
+
+set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p')
+set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p')
+set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p')
+set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
+
+if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
+
+" deprecated
+" 指定viminfo文件 
+"set viminfofile=$XDG_CONFIG_HOME/vim/.viminfo
 
 """ >>>>>> editor >>>>>>
 
@@ -15,7 +33,7 @@ set cursorline
 set textwidth=80
 
 " 自动换行
-set wrap
+"set wrap
 " 不在单词内部换行
 set linebreak
 
@@ -100,11 +118,12 @@ set smartcase
 " 保留撤销历史
 set undofile
 
+" deprecated
 " 设置备份文件、交换文件、操作历史文件的保存位置
 " 结尾的`//`表示生成的文件名带有绝对路径，路径中用`%`替换目录分隔符，这样可以防止文件重名
-set backupdir=$XDG_STATE_HOME/vim/.backup//"
-set directory=$XDG_STATE_HOME/vim/.swp//"
-set undodir=$XDG_STATE_HOME/vim/.undo//"
+"set backupdir=$XDG_STATE_HOME/vim/.backup//"
+"set directory=$XDG_STATE_HOME/vim/.swp//"
+"set undodir=$XDG_STATE_HOME/vim/.undo//"
 
 " 自动切换工作目录
 set autochdir
