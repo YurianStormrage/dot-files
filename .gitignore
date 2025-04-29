@@ -3,10 +3,15 @@
 !.gitignore
 !.gitmodules
 !readme
+!README.md
 
 !.vimrc
+!vimrc
 
 !.zshenv
+!.zshrc
+!zshenv
+!zshrc
 
 !zshrc.sh
 !autojump.sh
@@ -17,6 +22,7 @@
 !zsh-history-substring-search.sh
 
 !makefile
+!Makefile
 !vimrc.sh
 !p10k.sh
 !font-hack.sh
