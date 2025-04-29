@@ -8,6 +8,7 @@ cp -r zsh/. $HOME
 # 创建历史文件
 source $HOME/.zshenv
 if [[ $HISTFILE && ! -f $HISTFILE ]]; then
+    mkdir -p `dirname $HISTFILE`
     touch $HISTFILE
 fi
 
