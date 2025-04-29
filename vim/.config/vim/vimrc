@@ -30,7 +30,9 @@ set relativenumber
 set cursorline
 
 " 行宽
-set textwidth=80
+" 设置为0不限制行宽
+" 防止vim自动换行
+set textwidth=0
 
 " 自动换行
 "set wrap

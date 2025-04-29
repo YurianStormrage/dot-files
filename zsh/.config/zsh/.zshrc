@@ -20,13 +20,16 @@ unsetopt beep
 
 eval $(dircolors -b)        # Color settings
 
-alias ls='ls -G'
+alias ls='ls --color=auto'
 alias la='ls -Ah'
 alias ll='ls -lAh'
 alias lsa='ls -lah'
 alias l='ls -lah'
 
 alias grep='grep --color=auto'
+
+alias configzsh='vim $ZDOTDIR/.zshrc'
+alias configenv='vim $ZDOTDIR/.zshenv'
 
 # +---------+
 # | History |
