@@ -54,8 +54,8 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
     # | Modules |
     # +---------+
 
-# Enable completion menu listing configuration
-# Should be called before compinit
+# Enable completion menu listing configuration.
+# NOTE: Should be called before compinit.
 zmodload zsh/complist
 
     # +---------+
@@ -63,7 +63,7 @@ zmodload zsh/complist
     # +---------+
 
 # zsh-completions
-# Load more completions
+# Load more completions.
 [[ ! -d ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-completions/src ]] \
     || fpath=(${XDG_DATA_HOME:-$HOME/.local/share}/zsh-completions/src $fpath)
 
@@ -71,13 +71,15 @@ zmodload zsh/complist
     # | compinit |
     # +----------+
 
-# Initialize completion
+# Initialize completion.
 
 # Autoload compinit.
 # With the `-U' flag, alias expansion is suppressed when the function is loaded.
 autoload -U compinit
-# Alternatively, an explicit dumped file name can be given by `compinit -d dumpfile'.
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
+# Alternatively, an explicit dumped file name can be given by `compinit -d <dumpfile>'.
+# NOTE: 外部对`compinit`的无参数`-d`调用会导致冗余生成一个默认 dumpfile `$ZDOTDIR/.zcompdump`，
+#       考虑到这点，不如放弃指定 dumpfile 的位置，使用默认设置。
+#compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
 compinit
 
     # +---------+
@@ -171,6 +173,7 @@ zstyle ':completion:*' file-sort modification
     # `%B %b` - Bold.
     # `%U %u` - Underline.
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+# NOTE: `-- %D %d --` 格式串在命令没有提供`%D`信息时会引入一个额外的空格。
 #zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
 zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %d --%f'
 zstyle ':completion:*:*:*:*:messages' format '%F{purple}-- %d --%f'
@@ -227,6 +230,16 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 # zsh-history-substring-search
 # NOTE: If zsh-syntax-highlighting is used along with this script,
 #       then make sure that zsh-syntax-highlighting has been loaded before this script.
+# Usage: `bindkey '^[[A' history-substring-search-up`
+#        `bindkey '^[[B' history-substring-search-down`
+# Zsh 原生支持前缀历史搜索，默认绑定键位 `^[P` 和 `^[N`（即 `alt+P` 和 `alt+N`）；
+# 该插件提供子串历史搜索功能。
 [[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-history-substring-search/zsh-history-substring-search.zsh ]] \
     || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+
+# +-------------+
+# | User Custom |
+# +-------------+
+
 
