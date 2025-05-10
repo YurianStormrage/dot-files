@@ -120,8 +120,9 @@ zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
         # `_expand_alias` - Expand an alias you’ve typed. It needs to be declared before `_complete`.
         # `_extensions` - Complete the glob `*.` with the possible file extensions.
 
-# Define completers
-zstyle ':completion:*' completer _extensions _complete _approximate
+# Define completers.
+# NOTE: `_extensions`与 Spack 的内置补全存在冲突，通过置于`_complete`之后解决。
+zstyle ':completion:*' completer _complete _extensions _approximate
 
 #   This uses the HISTNO parameter and the BUFFER and CURSOR special
 #   parameters that are available inside zle and completion  widgets
