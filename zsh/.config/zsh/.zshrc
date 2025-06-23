@@ -18,9 +18,16 @@ setopt EXTENDED_GLOB        # Use extended globbing syntax.
 
 unsetopt beep
 
-eval $(dircolors -b)        # Color settings
+# NOTE: MacOS 默认不支持dircolors
+if [[ $OSTYPE != "darwin"* ]]; then
+    # Linux
+    eval $(dircolors -b)        # Color settings
+    alias ls='ls --color=auto'
+else
+    # MacOS
+    alias ls='ls -G'
+fi
 
-alias ls='ls --color=auto'
 alias la='ls -Ah'
 alias ll='ls -lAh'
 alias lsa='ls -lah'
@@ -28,12 +35,18 @@ alias l='ls -lah'
 
 alias grep='grep --color=auto'
 
-alias configzsh='vim $ZDOTDIR/.zshrc'
-alias configenv='vim $ZDOTDIR/.zshenv'
-
 # +---------+
 # | History |
 # +---------+
+
+# 历史纪录条目数量
+HISTSIZE=10000
+# 注销后保存的历史纪录条目数量
+SAVEHIST=10000
+# 历史纪录文件
+# NOTE: 历史文件使用默认位置 $ZDOTDIR/.zsh_history
+#       ，避免非交互终端的历史被分离
+#HISTFILE=${ZDOTDIR:-$HOME}/history
 
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt SHARE_HISTORY             # Share history between all sessions.
@@ -243,4 +256,9 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 # | User Custom |
 # +-------------+
 
+alias configenv='vim $ZDOTDIR/.zshenv'
+alias configzsh='vim $ZDOTDIR/.zshrc'
+alias configzshp='vim $ZDOTDIR/.zprofile'
+
+# 其他设置放在 .zprofile 中
 

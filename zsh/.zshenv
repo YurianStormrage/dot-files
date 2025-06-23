@@ -1,6 +1,8 @@
-if [[ -d $HOME/.config/zsh ]]; then
-        export ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+if [[ -d $XDG_CONFIG_HOME/zsh ]]; then
+        ZDOTDIR=$XDG_CONFIG_HOME/zsh
         if [[ -f $ZDOTDIR/.zshenv ]]; then
-                . $ZDOTDIR/.zshenv
+                source $ZDOTDIR/.zshenv
         fi
 fi
+
