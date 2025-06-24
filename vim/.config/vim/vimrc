@@ -31,6 +31,7 @@ if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
 " 指定viminfo文件 
 "set viminfofile=$XDG_CONFIG_HOME/vim/.viminfo
 
+
 """ >>>>>> editor >>>>>>
 
 " 行号
@@ -85,24 +86,6 @@ set t_Co=256
 
 """ <<<<<< editor <<<<<<
 
-""" >>>>>> indent >>>>>>
-
-" 基于文件类型缩进
-filetype indent on
-
-" 自动缩进
-set autoindent
-
-" <tab>宽度
-set tabstop=4
-" 缩进命令的宽度
-set shiftwidth=4
-" 输入的tab转为spaces
-set expandtab
-" 输入tab时用<tab>和<space>填充至该宽度（优先使用<tab>）
-"set softtabstop=4
-
-""" <<<<<< indent <<<<<<
 
 """ >>>>>> search >>>>>>
 
@@ -118,6 +101,7 @@ set ignorecase
 set smartcase
 
 """ <<<<<< search <<<<<<
+
 
 """ >>>>>> editing >>>>>>
 
@@ -167,3 +151,63 @@ set wildmenu
 set wildmode=list:full
 
 """ <<<<<< editing <<<<<<
+
+
+""" >>>>>> indent >>>>>>
+
+" 基于文件类型缩进
+filetype indent plugin on
+
+" 指定一系列针对不同语言开发场景的默认缩进方案
+augroup dev
+
+  " 清除dev组的所有autocmd, 避免多次source导致的冗余设置
+  autocmd!
+
+  " for C-like  programming where comments have explicit end
+  " characters, if starting a new line in the middle of a comment automatically
+  " insert the comment leader characters:
+  autocmd FileType c,cpp,java set formatoptions+=ro
+  autocmd FileType c set omnifunc=ccomplete#Complete
+
+  " fixed indentation should be OK for XML and CSS. People have fast internet
+  " anyway. Indentation set to 2.
+  autocmd FileType html,xhtml,css,xml,xslt set shiftwidth=2 softtabstop=2
+
+  " two space indentation for some files
+  autocmd FileType vim,lua,nginx set shiftwidth=2 softtabstop=2
+
+  " for CSS, also have things in braces indented:
+  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+  " add completion for xHTML
+  autocmd FileType xhtml,html set omnifunc=htmlcomplete#CompleteTags
+
+  " add completion for XML
+  autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+
+  " in makefiles, don't expand tabs to spaces, since actual tab characters are
+  " needed, and have indentation at 8 chars to be sure that all indents are tabs
+  " (despite the mappings later):
+  autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
+  " ensure normal tabs in assembly files
+  " and set to NASM syntax highlighting
+  autocmd FileType asm set noexpandtab shiftwidth=8 softtabstop=0 syntax=nasm
+
+augroup END " augroup dev
+
+" 自动缩进
+set autoindent
+
+" <tab>宽度
+set tabstop=4
+" 缩进命令的宽度
+set shiftwidth=4
+" 输入的tab转为spaces
+set expandtab
+" 输入tab时用<tab>和<space>填充至该宽度（优先使用<tab>）
+"set softtabstop=4
+
+""" <<<<<< indent <<<<<<
+
