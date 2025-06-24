@@ -135,7 +135,8 @@ zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # Define completers.
 # NOTE: `_extensions`与 Spack 的内置补全存在冲突，通过置于`_complete`之后解决。
-zstyle ':completion:*' completer _complete _extensions _approximate
+# NOTE: 仅后置仍然可能触发冲突导致卡顿，不再使用`_extensions`
+zstyle ':completion:*' completer _complete _approximate #_extensions 
 
 #   This uses the HISTNO parameter and the BUFFER and CURSOR special
 #   parameters that are available inside zle and completion  widgets
