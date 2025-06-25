@@ -229,18 +229,28 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 #    || source ${XDG_DATA_HOME:-$HOME/.local/share}/autojump/bin/autojump.sh
 
 # zsh-autosuggestions
-[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-autosuggestions/zsh-autosuggestions.zsh ]] \
-    || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-autosuggestions/zsh-autosuggestions.zsh
+SCRIPT=${XDG_DATA_HOME:-$HOME/.local/share}/zsh-autosuggestions/zsh-autosuggestions.zsh \
+    && [[ ! -f $SCRIPT ]] || source $SCRIPT
 
 # zsh-colored-man-pages
-[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-colored-man-pages/colored-man-pages.plugin.zsh ]] \
-    || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-colored-man-pages/colored-man-pages.plugin.zsh
+SCRIPT=${XDG_DATA_HOME:-$HOME/.local/share}/zsh-colored-man-pages/colored-man-pages.plugin.zsh \
+    && [[ ! -f $SCRIPT ]] || source $SCRIPT
 
 # zsh-syntax-highlighting
 # NOTE: This plugin needs to be sourced at the end of the `.zshrc` file.
 #       More detailed, it should be after all the `compinit` and `zle -N`s.
-[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] \
-    || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] \
+#    || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# NOTE: zsh-fast-syntax-highlighting额外提供对子命令的着色功能，
+#       但在一些场景下将引入额外延迟
+
+# zsh-fast-syntax-highlighting
+SCRIPT=${XDG_DATA_HOME:-$HOME/.local/share}/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh \
+    && [[ ! -f $SCRIPT ]] || source $SCRIPT
+# NOTE: 对`man`呈现显著延迟，需要禁用对`man`子命令的着色。
+#       另一种修复方式是hook掉阻塞的函数`whatis()`：通过测试$THEFD判断`whatis`的调用是否发生在highlighter中
+FAST_HIGHLIGHT[chroma-man]=
+# function whatis() { if [[ -v THEFD ]]; then :; else command whatis "$@"; fi; }
 
 # zsh-history-substring-search
 # NOTE: If zsh-syntax-highlighting is used along with this script,
@@ -249,8 +259,8 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 #        `bindkey '^[[B' history-substring-search-down`
 # Zsh 原生支持前缀历史搜索，默认绑定键位 `^[P` 和 `^[N`（即 `alt+P` 和 `alt+N`）；
 # 该插件提供子串历史搜索功能。
-[[ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-history-substring-search/zsh-history-substring-search.zsh ]] \
-    || source ${XDG_DATA_HOME:-$HOME/.local/share}/zsh-history-substring-search/zsh-history-substring-search.zsh
+SCRIPT=${XDG_DATA_HOME:-$HOME/.local/share}/zsh-history-substring-search/zsh-history-substring-search.zsh \
+    && [[ ! -f $SCRIPT ]] || source $SCRIPT
 
 
 # +-------------+

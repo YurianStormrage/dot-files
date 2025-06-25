@@ -5,25 +5,27 @@ all: zshrc vimrc p10k
 zshrc:
 	sh make/zsh/zshrc.sh
 
-zsh-plugins: autojump zsh-autosuggestions zsh-completions zsh-colored-man-pages zsh-syntax-highlighting zsh-history-substring-search
+zsh-plugins: \
+		autojump						\
+		zsh-autosuggestions				\
+		zsh-completions					\
+		zsh-colored-man-pages			\
+		zsh-history-substring-search	\
+		zsh-syntax-highlighting			\
+		zsh-fast-syntax-highlighting
 
-autojump:
-	. make/zsh/plugin/autojump.sh
+# 定义插件目录
+ZSH_PLUGIN_DIR := make/zsh/plugin
 
-zsh-autosuggestions:
-	. make/zsh/plugin/zsh-autosuggestions.sh
-
-zsh-completions:
-	. make/zsh/plugin/zsh-completions.sh
-
-zsh-colored-man-pages:
-	. make/zsh/plugin/zsh-colored-man-pages.sh
-
-zsh-syntax-highlighting:
-	. make/zsh/plugin/zsh-syntax-highlighting.sh
-
-zsh-history-substring-search:
-	. make/zsh/plugin/zsh-history-substring-search.sh
+# 使用模式规则来处理所有插件
+# `$(ZSH_PLUGIN_DIR)/$@`：在 `$ZSH_PLUGIN_DIR` 目录下，以目标名作为文件名
+# 如果目标是 'autojump'，那么 `$(ZSH_PLUGIN_DIR)/autojump.sh` 是对应的文件
+%: $(ZSH_PLUGIN_DIR)/%.sh
+	# $@ 是目标名称 (例如 autojump)
+	# $< 是第一个依赖项 (例如 make/zsh/plugin/autojump.sh)
+	@echo "Processing Zsh plugin: $@"
+	# 所有脚本的唯一作用都是下载插件，不涉及环境修改
+	. "$<"
 
 p10k:
 	. make/p10k.sh
@@ -38,3 +40,4 @@ font-jbm:
 	. make/font-jbm.sh
 
 fonts: font-hack font-jbm
+
